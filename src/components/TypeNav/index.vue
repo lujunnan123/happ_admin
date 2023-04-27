@@ -1,47 +1,44 @@
 <template>
-    <div>
+    <div class="typenav">
         <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
             <el-radio-button :label="false">展开</el-radio-button>
             <el-radio-button :label="true">收起</el-radio-button>
         </el-radio-group>
         <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
             :collapse="isCollapse">
-            <el-submenu index="1">
-                <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span slot="title">首页</span>
-                </template>
-                <el-menu-item-group>
-                    <span slot="title">分组一</span>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                    <span slot="title">选项4</span>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-            <el-menu-item index="2">
+          
+            <el-menu-item index="1" @click="goHome">
+                <i class="el-icon-position"></i>
+                <span slot="title">首页</span>
+            </el-menu-item>
+            <el-menu-item index="2" @click="goGoods">
                 <i class="el-icon-menu"></i>
-                <span slot="title">商品管理</span>
+                <span slot="title" >商品管理</span>
             </el-menu-item>
-            <el-menu-item index="3" disabled>
+            <el-menu-item index="3"  @click="goOrder">
                 <i class="el-icon-document"></i>
-                <span slot="title">用户管理</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
                 <span slot="title">订单管理</span>
             </el-menu-item>
+            <el-menu-item index="4" @click="goUser">
+                <i class="el-icon-user"></i>
+                <span slot="title" >用户管理</span>                
+            </el-menu-item>
+            <el-submenu index="5">
+                <template slot="title">
+                    <i class="el-icon-s-data"></i>
+                    <span slot="title" >图表分析</span>
+                </template>
+                <el-menu-item-group>
+                    <el-menu-item index="5-1"  @click="goChart">销售情况</el-menu-item>
+                    <el-menu-item index="5-2"  @click="goChart">注册情况</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
         </el-menu>
     </div>
 </template>
 <script>
 export default {
-    name: 'nav',
+    name: 'typenav',
     data() {
         return {
             isCollapse: true
@@ -53,11 +50,33 @@ export default {
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
+        },
+        // 路由跳转
+        goHome(){
+            this.$router.push('/home')
+        },
+        goGoods(){
+            this.$router.push('/goods')
+        },
+        goOrder(){
+            this.$router.push('/order')
+        },
+        goUser(){
+            this.$router.push('/user')
+        },
+        goChart(){
+            this.$router.push('/chart')
         }
     }
 }
 </script>
 <style scoped>
+.typenav{
+    /* position: absolute; */
+    float: left;
+    left: 0;
+    top: 0;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;

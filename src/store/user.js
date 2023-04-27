@@ -5,7 +5,6 @@ const state = {
 const actions = {
     async sendAdminInfo({commit},data){
         let result = await login(data);
-        console.log(result);
         if(result.data.code === 200){
             commit('SENDADMININFO',result.data)
         }

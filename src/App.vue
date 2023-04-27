@@ -4,11 +4,11 @@
   </div>
 </template>
 <script>
-  import hello from './components/hello.vue'
+  import Header from './components/Header'
   export default{
     name:'App',
     components:{
-      hello
+      Header
     }
   }
 </script>

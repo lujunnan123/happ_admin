@@ -17,6 +17,7 @@ import { mapGetters } from 'vuex';
 </script>
 <style scoped>
     .content{
-        margin: 30px;
+        padding-top: 50px;
+        margin-left: 20px;
     }
 </style>

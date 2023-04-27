@@ -8,6 +8,14 @@ export function login(data) {
       data
     })
   }
+// 请求商品信息
+export function getgoodsinfo(){
+  return request({
+    url:'/admin/goods',
+    method:'post'
+  })
+}
+
 // 发送用户注册信息
 // export const SendUserInfo = (username,password,tel) => Requests({url:"/register",method:'post',data:{username,password,tel}});
 // 发送用户登录信息
