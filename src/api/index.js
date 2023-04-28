@@ -15,6 +15,20 @@ export function getgoodsinfo(){
     method:'post'
   })
 }
+// 请求用户信息
+export function getuserinfo(){
+  return request({
+    url:'/admin/userInfo',
+    method:'post'
+  })
+}
+// 请求订单信息
+export function getorderinfo(){
+  return request({
+    url:'/admin/order',
+    method:'post'
+  })
+}
 
 // 发送用户注册信息
 // export const SendUserInfo = (username,password,tel) => Requests({url:"/register",method:'post',data:{username,password,tel}});

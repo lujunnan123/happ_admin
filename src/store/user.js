@@ -1,24 +1,24 @@
-import {login} from '@/api'
+import {getuserinfo} from '@/api'
 const state = {
-    admininfo:{}
+    usersinfo:{}
 };
 const actions = {
-    async sendAdminInfo({commit},data){
-        let result = await login(data);
+    async sendUser({commit}){
+        let result = await getuserinfo();
         if(result.data.code === 200){
-            commit('SENDADMININFO',result.data)
+            commit('GETUSERINFO',result.data)
         }
     }
 };
 const mutations = {
-    SENDADMININFO(state,admininfo){
-        state.admininfo = admininfo
+    GETUSERINFO(state,usersinfo){
+        state.usersinfo = usersinfo
     }
 };
 const getters = {
-    userInfo(state){
-        return state.admininfo.data
-    }
+   usersinfo(state){
+    return state.usersinfo.data
+   }
 }
 export default{
     state,
