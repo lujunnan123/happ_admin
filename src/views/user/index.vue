@@ -36,7 +36,28 @@ import { mapGetters } from 'vuex';
         this.$store.dispatch('sendUser');
       },
       handleClick(row) {
-        console.log(row);
+
+         // elementUI弹窗
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => { 
+        // 发送删除信息请求       
+        this.$store.dispatch('deleteUser',row);
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+        // 重新请求更新后的数据
+        this.getdata();
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
+
       }
     },
     computed:{

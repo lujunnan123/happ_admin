@@ -1,8 +1,8 @@
 <template>
   <div>
     <TypeNav></TypeNav>
-    <div class="goodstable">  
-      <h1>店铺商品管理</h1>    
+    <div class="goodstable">
+      <h1>店铺商品管理</h1>
       <el-table :data="goodslist" border style="width: 100%">
         <!-- <el-table-column fixed prop="h_images" label="图片" width="150">
         </el-table-column> -->
@@ -38,14 +38,33 @@ export default {
   mounted() {
     this.goGoods()
   },
- 
+
   methods: {
     goGoods() {
       this.$store.dispatch('getGoods')
     },
     handleClick(row) {
-        console.log(row);
-      }
+      // elementUI弹窗
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => { 
+        // 发送删除信息请求       
+        this.$store.dispatch('deleteGoods',row);
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+        // 重新请求更新后的数据
+        this.goGoods()
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
+    }
   },
   computed: {
     ...mapGetters({ goodslist: 'goodslist' })
@@ -54,11 +73,11 @@ export default {
 }
 </script>
 <style scoped>
-.goodstable{
+.goodstable {
   float: left;
   width: 1000px;
   margin-top: 50px;
   margin-left: 50px;
-  height: 100vh; 
+  height: 100vh;
 }
 </style>

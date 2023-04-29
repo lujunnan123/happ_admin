@@ -2,7 +2,7 @@
   <div>
     <TypeNav></TypeNav>
     <div class="content">
-        <h1>Welcome to back!{{ adminInfo[0].username }}</h1>
+        <h1>Welcome back!{{ adminInfo[0].username }}</h1>
         <div class="calendar">
           <Calendar/>
         </div>

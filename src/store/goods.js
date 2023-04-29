@@ -1,4 +1,5 @@
 import {getgoodsinfo} from '@/api';
+import { reqdeleteGoods } from '@/api';
 const state = {
     goodsinfo:{}
 }
@@ -7,6 +8,14 @@ const actions = {
         let result = await getgoodsinfo();
         if(result.data.code === 200){
             commit('GETGOODSINFO',result.data);
+        }
+    },
+    async deleteGoods({commit},data){
+        let result = await reqdeleteGoods(data);
+        if(result.data.code === 200){
+            return 'ok'
+        }else{
+            return Promise.reject(new Error('falie'));
         }
     }
 }
