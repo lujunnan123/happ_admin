@@ -29,8 +29,8 @@
                     <span slot="title" >图表分析</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="5-1"  @click="goChart">销售情况</el-menu-item>
-                    <el-menu-item index="5-2"  @click="goChart">注册情况</el-menu-item>
+                    <el-menu-item index="5-1"  @click="goChart1">销售情况</el-menu-item>
+                    <el-menu-item index="5-2"  @click="goChart2">注册情况</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>
@@ -64,8 +64,11 @@ export default {
         goUser(){
             this.$router.push('/user')
         },
-        goChart(){
-            this.$router.push('/chart')
+        goChart1(){
+            this.$router.push('/chart/chart1')
+        },
+        goChart2(){
+            this.$router.push('/chart/chart2')
         }
     }
 }

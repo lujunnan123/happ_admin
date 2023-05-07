@@ -2,7 +2,8 @@ import VueRouter from "vue-router";
 import Login from "@/views/login";
 import Home from "@/views/home";
 import Goods from "@/views/goods";
-import Chart from "@/views/chart";
+import Chart1 from "@/views/chart/chart1";
+import Chart2 from "@/views/chart/chart2"
 import Order from "@/views/order";
 import User from "@/views/user";
 
@@ -28,10 +29,18 @@ const router = new VueRouter({
         {
             path:'/order',
             component:Order  
+        },{
+            path:'/order',
+            component:Order  
         },
         {
-            path:'/chart',
-            component:Chart  
+            path:'/chart/chart1',
+            component:Chart1 
+        },
+        {
+            path:'/chart/chart2',
+            name:'chart2',
+            component:Chart2  
         },
         {
             // 重定向：在项目跑起来的时候，访问/，立马让他定向到首页
