@@ -1,9 +1,9 @@
 <template>
   <div>
     <TypeNav></TypeNav>
-    <h1>销售情况</h1>
+    <!-- <h1>销售情况</h1> -->
     <h3 v-show="false">{{ chartinfo }}</h3>
-    <div ref="chart" style="width:50%;height:376px" class="chart"></div>
+    <div ref="chart" style="width:80%;height:376px" class="chart"></div>
   </div>
 </template>
 <script>
@@ -17,11 +17,10 @@ export default {
     this.$store.dispatch('getdata')
   },
   updated() {
-    this.getEchartData()
-    
+    this.getEchartData()    
   },
   computed: {
-  ...mapGetters(['chartinfo'])
+  ...mapGetters(['chartinfo']), 
   },
   methods: {
     getEchartData() {
@@ -29,16 +28,27 @@ export default {
       if (chart) {
         const myChart = this.$echarts.init(chart)
         const option = {
-          legend: {},
+          title:{
+            text:'各类商品销售状况',
+          },
           tooltip: {},
           dataset: {
             source: 
             this.chartinfo           
           },
-          xAxis: { type: 'category' },
+          xAxis: { 
+            type: 'category',
+            axisTick: {
+              alignWithLabel: true
+            }
+         },
           yAxis: {},
-
-          series: [{ type: 'bar' }]
+          series: [{ 
+            type: 'bar' ,
+            itemStyle:{
+               color: '#91cc75',
+            }
+          }]
         }
         myChart.setOption(option)
         window.addEventListener("resize", function () {

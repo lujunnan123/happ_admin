@@ -20,10 +20,44 @@
         </el-table-column>
         <el-table-column prop="h_desc" label="材料" width="300">
         </el-table-column>
+        <el-table-column prop="h_package" label="包装" width="300">
+        </el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">删除</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <!-- <el-button type="text" size="small">编辑</el-button> -->
+            <el-button type="text" @click="dialogFormVisible = true" size="small">编辑</el-button>
+            <!-- 编辑页面Dialog -->
+            <el-dialog append-to-body title="修改信息" :visible.sync="dialogFormVisible">
+              <el-form :model="form">
+                <el-form-item label="花名" :label-width="formLabelWidth">
+                  <el-input  autocomplete="off"  v-model="goodslist[0].h_name"></el-input>
+                </el-form-item>
+                <el-form-item label="分类" :label-width="formLabelWidth">
+                  <el-input v-model="goodslist[0].h_kind" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="价格" :label-width="formLabelWidth">
+                  <el-input v-model="goodslist[0].h_price" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="存库数量" :label-width="formLabelWidth">
+                  <el-input v-model="goodslist[0].h_number" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="花语" :label-width="formLabelWidth">
+                  <el-input v-model="goodslist[0].h_say" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="材料" :label-width="formLabelWidth">
+                  <el-input v-model="goodslist[0].h_desc" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="包装" :label-width="formLabelWidth">
+                  <el-input v-model="goodslist[0].h_package" autocomplete="off"></el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+              </div>
+            </el-dialog>
+            
           </template>
         </el-table-column>
       </el-table>
@@ -32,9 +66,28 @@
   </div>
 </template>
 <script>
+import goods from '@/store/goods';
 import { mapGetters } from 'vuex';
 export default {
   name: 'goods',
+  data() {
+    return {
+      // 编辑框配置
+      dialogFormVisible: false,
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+
+      },
+      formLabelWidth: '120px'
+    }
+  },
   mounted() {
     this.goGoods()
   },
@@ -49,9 +102,9 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => { 
+      }).then(() => {
         // 发送删除信息请求       
-        this.$store.dispatch('deleteGoods',row);
+        this.$store.dispatch('deleteGoods', row);
         this.$message({
           type: 'success',
           message: '删除成功!'

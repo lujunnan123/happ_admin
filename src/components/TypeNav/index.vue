@@ -29,8 +29,8 @@
                     <span slot="title" >图表分析</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="5-1"  @click="goChart1">销售情况</el-menu-item>
-                    <el-menu-item index="5-2"  @click="goChart2">注册情况</el-menu-item>
+                    <el-menu-item index="5-1"  @click="goChart1">鲜花种类销售情况</el-menu-item>
+                    <el-menu-item index="5-2"  @click="goChart2">鲜花日销售情况</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>
