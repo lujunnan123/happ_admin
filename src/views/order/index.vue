@@ -21,10 +21,31 @@
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">删除</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" @click="dialogFormVisible = true" size="small">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
+       <!-- 编辑页面Dialog -->
+       <el-dialog append-to-body title="修改信息" :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+          <el-form-item label="昵称" :label-width="formLabelWidth">
+            <el-input autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="电话" :label-width="formLabelWidth">
+            <el-input  autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="花名" :label-width="formLabelWidth">
+            <el-input  autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="购买数量" :label-width="formLabelWidth">
+            <el-input  autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -33,6 +54,23 @@ import { mapGetters } from 'vuex';
 
   export default{
     name:'order',
+    data() {
+      return {
+        // 编辑框配置
+      dialogFormVisible: false,
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      formLabelWidth: '120px'
+      }
+    },
     mounted() {
       this.getdata();
     },

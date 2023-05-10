@@ -29,14 +29,14 @@ export default {
                     },
                     xAxis: {
                         type: 'category',
-                        setdata: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                        setdata: ['5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7']
                     },
                     yAxis: {
                         type: 'value'
                     },
                     series: [
                         {
-                            data: [820, 932, 901, 934, 1290, 1330, 1320],
+                            data: [120, 132, 101, 134, 290, 130, 220],
                             type: 'line',
                             smooth: true
                         }

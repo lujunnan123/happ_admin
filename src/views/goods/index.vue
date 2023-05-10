@@ -3,6 +3,38 @@
     <TypeNav></TypeNav>
     <div class="goodstable">
       <h1>店铺商品管理</h1>
+      <!-- 新增商品 -->
+      <el-button type="text" @click="dialogFormVisible1 = true" size="big">新增商品</el-button>
+      <!-- 编辑页面Dialog -->
+      <el-dialog append-to-body title="新增商品" :visible.sync="dialogFormVisible1">
+        <el-form :model="addform">
+          <el-form-item label="花名" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hname"></el-input>
+          </el-form-item>
+          <el-form-item label="分类" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hkind"></el-input>
+          </el-form-item>
+          <el-form-item label="价格" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hprice"></el-input>
+          </el-form-item>
+          <el-form-item label="存库数量" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hnumber"></el-input>
+          </el-form-item>
+          <el-form-item label="花语" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hsay"></el-input>
+          </el-form-item>
+          <el-form-item label="材料" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hdesc"></el-input>
+          </el-form-item>
+          <el-form-item label="包装" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="addform.hpackage"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+          <el-button type="primary" @click="dialogFormVisible1 = false">确 定</el-button>
+        </div>
+      </el-dialog>
       <el-table :data="goodslist" border style="width: 100%">
         <!-- <el-table-column fixed prop="h_images" label="图片" width="150">
         </el-table-column> -->
@@ -27,40 +59,39 @@
             <el-button @click="handleClick(scope.row)" type="text" size="small">删除</el-button>
             <!-- <el-button type="text" size="small">编辑</el-button> -->
             <el-button type="text" @click="dialogFormVisible = true" size="small">编辑</el-button>
-            <!-- 编辑页面Dialog -->
-            <el-dialog append-to-body title="修改信息" :visible.sync="dialogFormVisible">
-              <el-form :model="form">
-                <el-form-item label="花名" :label-width="formLabelWidth">
-                  <el-input  autocomplete="off"  v-model="goodslist[0].h_name"></el-input>
-                </el-form-item>
-                <el-form-item label="分类" :label-width="formLabelWidth">
-                  <el-input v-model="goodslist[0].h_kind" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="价格" :label-width="formLabelWidth">
-                  <el-input v-model="goodslist[0].h_price" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="存库数量" :label-width="formLabelWidth">
-                  <el-input v-model="goodslist[0].h_number" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="花语" :label-width="formLabelWidth">
-                  <el-input v-model="goodslist[0].h_say" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="材料" :label-width="formLabelWidth">
-                  <el-input v-model="goodslist[0].h_desc" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="包装" :label-width="formLabelWidth">
-                  <el-input v-model="goodslist[0].h_package" autocomplete="off"></el-input>
-                </el-form-item>
-              </el-form>
-              <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-              </div>
-            </el-dialog>
-            
           </template>
         </el-table-column>
       </el-table>
+      <!-- 编辑页面Dialog -->
+      <el-dialog append-to-body title="修改信息" :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+          <el-form-item label="花名" :label-width="formLabelWidth">
+            <el-input autocomplete="off" v-model="goodslist[0].h_name"></el-input>
+          </el-form-item>
+          <el-form-item label="分类" :label-width="formLabelWidth">
+            <el-input v-model="goodslist[0].h_kind" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="价格" :label-width="formLabelWidth">
+            <el-input v-model="goodslist[0].h_price" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="存库数量" :label-width="formLabelWidth">
+            <el-input v-model="goodslist[0].h_number" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="花语" :label-width="formLabelWidth">
+            <el-input v-model="goodslist[0].h_say" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="材料" :label-width="formLabelWidth">
+            <el-input v-model="goodslist[0].h_desc" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="包装" :label-width="formLabelWidth">
+            <el-input v-model="goodslist[0].h_package" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
 
   </div>
@@ -83,7 +114,16 @@ export default {
         type: [],
         resource: '',
         desc: ''
-
+      },
+      // 新增框
+      dialogFormVisible1: false,
+      addform: {
+        hname: '',
+        hdesc: '',
+        hkind: '',
+        hnumber: '',
+        hpackage: '',
+        hsay: ''
       },
       formLabelWidth: '120px'
     }
